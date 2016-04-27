@@ -15,6 +15,7 @@ Not compatible with Python 3.5
 
 Install Python version 2.7 from https://www.python.org/downloads/
 
+Install DictionaryServices framework
 ```
 $ pip install 'pyobjc-framework-DictionaryServices==3.1.1'
 ```
