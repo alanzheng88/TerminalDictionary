@@ -19,7 +19,8 @@ Install Python version 2.7 from https://www.python.org/downloads/
 $ pip install 'pyobjc-framework-DictionaryServices==3.1.1'
 ```
 
-```Set permissions and add to path
+Set permissions and add to path
+```
 chmod uo+x ./l
 export PATH=$PATH:<path to the script 'l'>
 ```
