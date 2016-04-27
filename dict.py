@@ -1,4 +1,5 @@
 import sys
+import re
 from DictionaryServices import *
 
 def main():
@@ -14,6 +15,10 @@ def main():
         errmsg = "'%s' not found in Dictionary." % (searchword)
         print errmsg.encode('utf-8')
     else:
+        dictresult = re.sub(ur'(\u25b6)', u'\\n\\n\\1', dictresult, flags=re.UNICODE)
+        dictresult = re.sub(ur'(\u2022)', u'\\n\\t\\1', dictresult, flags=re.UNICODE)
+        dictresult = re.sub('(ORIGIN)', '\\n\\n\\1', dictresult)
+        dictresult = re.sub('^|$', '\\n', dictresult)
         print dictresult.encode('utf-8')
 
 if __name__ == '__main__':
