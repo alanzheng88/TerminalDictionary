@@ -1,0 +1,26 @@
+#!/bin/bash
+
+CURRENT_DIR="$(dirname "$(which "$0")")";
+FILE_NAME="$(echo $1.txt | tr '[A-Z]' '[a-z]')";
+FILE="$CURRENT_DIR"/"$FILE_NAME";
+
+DEF="$(l "$1")";
+EXITCODE=$?;
+echo "$DEF" | more;
+if [ ! -f $FILE ]; then
+  if [ $EXITCODE -eq 0 ]; then
+    touch "$FILE";
+    echo "$DEF" >> "$FILE";
+    echo \ >> "$FILE";
+    echo -e "\nThe word '$1' has been added.\n";
+    chmod 400 "$FILE";
+  fi
+fi
+
+if [ ! -z "$2" ] && [ -f $FILE ]; then
+  chmod 600 "$FILE"
+  echo "$2" >> $FILE;
+  echo "'$2' has been added to $FILE";
+  chmod 400 "$FILE"
+fi
+

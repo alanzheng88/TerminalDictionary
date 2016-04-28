@@ -7,13 +7,12 @@ def main():
         searchword = sys.argv[1].decode('utf-8')
     except IndexError:
         errmsg = 'You did not enter any terms to look up in the Dictionary.'
-        print errmsg
-        sys.exit()
+        raise Exception(errmsg)
     wordrange = (0, len(searchword))
     dictresult = DCSCopyTextDefinition(None, searchword, wordrange)
     if not dictresult:
         errmsg = "'%s' not found in Dictionary." % (searchword)
-        print errmsg.encode('utf-8')
+        raise Exception(errmsg.encode('utf-8'))
     else:
         dictresult = re.sub(ur'(\u25b6)', u'\\n\\n\\1', dictresult, flags=re.UNICODE)
         dictresult = re.sub(ur'(\u2022)', u'\\n\\t\\1', dictresult, flags=re.UNICODE)
